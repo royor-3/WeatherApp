@@ -1,10 +1,18 @@
 import React from 'react'
-import { View, Text, StyleSheet, ImageBackground } from 'react-native'
+import {
+    View,
+    Text,
+    StyleSheet,
+    ImageBackground,
+    SafeAreaView,
+    StatusBar
+} from 'react-native'
 // components
 import IconText from '../components/IconText'
 
 const City = () => {
     const {
+        container,
         image,
         cityName,
         countryName,
@@ -16,7 +24,7 @@ const City = () => {
         iconContainer
     } = styles
     return (
-        <>
+        <SafeAreaView style={container}>
             <ImageBackground
                 source={require('../../assets/city-background.jpg')}
                 style={image}
@@ -52,11 +60,15 @@ const City = () => {
                     />
                 </View>
             </ImageBackground>
-        </>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+        // marginTop: StatusBar.currentHeight || 0,
+    },
     image: {
         flex: 1
     },

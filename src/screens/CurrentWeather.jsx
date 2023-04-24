@@ -1,11 +1,12 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Text, SafeAreaView, StatusBar } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 // compoenents
 import RowText from '../components/RowText'
 
 const CurrentWeather = () => {
     const {
+        wrapper,
         container,
         temp,
         feels,
@@ -17,7 +18,7 @@ const CurrentWeather = () => {
     } = styles
 
     return (
-        <>
+        <SafeAreaView style={wrapper}>
             <View style={container}>
                 <Feather name="sun" size={100} color="black" />
                 <Text style={temp}>6</Text>
@@ -33,11 +34,15 @@ const CurrentWeather = () => {
                 texts={['Its sunny', 'Its perfect T-shirt weather']}
                 stylesText={[description, message]}
             />
-        </>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
+    wrapper: {
+        flex: 1
+        // marginTop: StatusBar.currentHeight || 0,
+    },
     container: {
         flex: 1,
         alignItems: 'center',

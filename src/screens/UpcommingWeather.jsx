@@ -1,5 +1,12 @@
 import React from 'react'
-import { View, Text, FlatList, StyleSheet, ImageBackground } from 'react-native'
+import {
+    Text,
+    FlatList,
+    StyleSheet,
+    ImageBackground,
+    SafeAreaView,
+    StatusBar
+} from 'react-native'
 // Components
 import ListItem from '../components/ListItem'
 
@@ -52,9 +59,9 @@ const UpcommingWeather = () => {
         />
     )
 
-    const { image } = styles
+    const { container, image } = styles
     return (
-        <>
+        <SafeAreaView style={container}>
             <ImageBackground
                 source={require('../../assets/upcoming-background.jpg')}
                 style={image}
@@ -66,11 +73,15 @@ const UpcommingWeather = () => {
                     keyExtractor={(item) => item.dt_txt}
                 />
             </ImageBackground>
-        </>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+        // marginTop: StatusBar.currentHeight || 0,
+    },
     image: {
         flex: 1
     }
