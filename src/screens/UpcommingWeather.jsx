@@ -52,9 +52,9 @@ const UpcommingWeather = () => {
         />
     )
 
-    const { upcommingwrapper, image } = styles
+    const { image } = styles
     return (
-        <View style={upcommingwrapper}>
+        <>
             <ImageBackground
                 source={require('../../assets/upcoming-background.jpg')}
                 style={image}
@@ -66,14 +66,11 @@ const UpcommingWeather = () => {
                     keyExtractor={(item) => item.dt_txt}
                 />
             </ImageBackground>
-        </View>
+        </>
     )
 }
 
 const styles = StyleSheet.create({
-    upcommingwrapper: {
-        flex: 1
-    },
     image: {
         flex: 1
     }

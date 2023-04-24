@@ -2,14 +2,18 @@ import React from 'react'
 import { StyleSheet, SafeAreaView, StatusBar } from 'react-native'
 
 // components
-// import CurrentWeather from './src/screens/CurrentWeather'
+import CurrentWeather from './src/screens/CurrentWeather'
 import UpcommingWeather from './src/screens/UpcommingWeather'
+import City from './src/screens/City'
 
 const App = () => {
+    const { safeAreaWrapper } = styles
+
     return (
-        <SafeAreaView style={styles.safeAreaWrapper}>
-            {/* <CurrentWeather /> */}
-            <UpcommingWeather />
+        <SafeAreaView style={safeAreaWrapper}>
+            <CurrentWeather />
+            {/* <UpcommingWeather /> */}
+            {/* <City /> */}
         </SafeAreaView>
     )
 }

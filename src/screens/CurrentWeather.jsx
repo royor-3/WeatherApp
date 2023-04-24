@@ -1,33 +1,43 @@
 import React from 'react'
-import { StyleSheet, View, Text, StatusBar } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import { Feather } from '@expo/vector-icons'
+// compoenents
+import RowText from '../components/RowText'
 
 const CurrentWeather = () => {
+    const {
+        container,
+        temp,
+        feels,
+        highLowWrapper,
+        highLow,
+        bodyWrapper,
+        description,
+        message
+    } = styles
+
     return (
         <>
-            <View style={styles.container}>
+            <View style={container}>
                 <Feather name="sun" size={100} color="black" />
-                <Text style={styles.temp}>6</Text>
-                <Text style={styles.feels}>Feels like 5</Text>
-                <View style={styles.highLowWrapper}>
-                    <Text style={styles.highLow}>High: 8</Text>
-                    <Text style={styles.highLow}>Low: 6</Text>
-                </View>
+                <Text style={temp}>6</Text>
+                <Text style={feels}>Feels like 5</Text>
+                <RowText
+                    textContainer={highLowWrapper}
+                    texts={['High: 8', 'Low: 6']}
+                    stylesText={[highLow]}
+                />
             </View>
-            <View style={styles.bodyWrapper}>
-                <Text style={styles.description}>Its sunny</Text>
-                <Text style={styles.message}>Its perfect T-shirt weather</Text>
-            </View>
+            <RowText
+                textContainer={bodyWrapper}
+                texts={['Its sunny', 'Its perfect T-shirt weather']}
+                stylesText={[description, message]}
+            />
         </>
     )
 }
 
 const styles = StyleSheet.create({
-    safeAreaWrapper: {
-        flex: 1,
-        marginTop: StatusBar.currentHeight,
-        backgroundColor: 'pink'
-    },
     container: {
         flex: 1,
         alignItems: 'center',
@@ -52,7 +62,6 @@ const styles = StyleSheet.create({
     },
     bodyWrapper: {
         justifyContent: 'flex-end',
-        alignItems: 'flex-start',
         paddingLeft: 25,
         marginBottom: 40
     },
