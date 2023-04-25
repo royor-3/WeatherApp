@@ -3,8 +3,7 @@ import {
     FlatList,
     StyleSheet,
     ImageBackground,
-    SafeAreaView,
-    StatusBar
+    SafeAreaView
 } from 'react-native'
 // Components
 import ListItem from '../components/ListItem'
@@ -39,7 +38,6 @@ const UpcommingWeather = ({ weatherData }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1
-        // marginTop: StatusBar.currentHeight || 0,
     },
     image: {
         flex: 1

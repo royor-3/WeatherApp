@@ -3,6 +3,7 @@ import { View, ActivityIndicator, StyleSheet } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 // components
 import Tabs from './src/components/Tabs'
+import ErrorItem from './src/components/ErrorItem'
 // hooks
 import { useGetWeather } from './src/hooks/useGetWeather'
 
@@ -19,7 +20,11 @@ const App = () => {
 
     return (
         <View style={styles.container}>
-            <ActivityIndicator size={'large'} color={'blue'} />
+            {isLoading ? (
+                <ActivityIndicator size={'large'} color={'blue'} />
+            ) : (
+                <ErrorItem />
+            )}
         </View>
     )
 }

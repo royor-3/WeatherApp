@@ -4,8 +4,7 @@ import {
     Text,
     StyleSheet,
     ImageBackground,
-    SafeAreaView,
-    StatusBar
+    SafeAreaView
 } from 'react-native'
 import moment from 'moment'
 // components
@@ -71,7 +70,6 @@ const City = ({ weatherData }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1
-        // marginTop: StatusBar.currentHeight || 0,
     },
     image: {
         flex: 1

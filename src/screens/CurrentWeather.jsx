@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, SafeAreaView, StatusBar } from 'react-native'
+import { StyleSheet, View, Text, SafeAreaView } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 // compoenents
 import RowText from '../components/RowText'
@@ -42,11 +42,16 @@ const CurrentWeather = ({ weatherData }) => {
                     size={100}
                     color="white"
                 />
-                <Text style={tempStyles}>{temp}</Text>
-                <Text style={feels}>{`Feels like ${feels_like}`}</Text>
+                <Text style={tempStyles}>{`${Math.round(temp)}°`}</Text>
+                <Text style={feels}>{`Feels like ${Math.round(
+                    feels_like
+                )}°`}</Text>
                 <RowText
                     textContainer={highLowWrapper}
-                    texts={[`High ${temp_max}`, `Low ${temp_min}`]}
+                    texts={[
+                        `High ${Math.round(temp_max)}° `,
+                        `Low ${Math.round(temp_min)}°`
+                    ]}
                     stylesText={[highLow]}
                 />
             </View>
@@ -65,7 +70,6 @@ const CurrentWeather = ({ weatherData }) => {
 const styles = StyleSheet.create({
     wrapper: {
         flex: 1
-        // marginTop: StatusBar.currentHeight || 0,
     },
     container: {
         flex: 1,
