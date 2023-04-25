@@ -3,12 +3,14 @@ import { StyleSheet, View, Text, SafeAreaView, StatusBar } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 // compoenents
 import RowText from '../components/RowText'
+// utilities
+import { weatherType } from '../utilities/weatherType'
 
-const CurrentWeather = () => {
+const CurrentWeather = ({ weatherData }) => {
     const {
         wrapper,
         container,
-        temp,
+        tempStyles,
         feels,
         highLowWrapper,
         highLow,
@@ -17,21 +19,43 @@ const CurrentWeather = () => {
         message
     } = styles
 
+    const {
+        main: { temp, feels_like, temp_max, temp_min },
+        weather
+    } = weatherData
+
+    const weatherCondition = weather[0].main
+
     return (
-        <SafeAreaView style={wrapper}>
+        <SafeAreaView
+            style={[
+                wrapper,
+                {
+                    backgroundColor:
+                        weatherType[weatherCondition].backgroundColor
+                }
+            ]}
+        >
             <View style={container}>
-                <Feather name="sun" size={100} color="black" />
-                <Text style={temp}>6</Text>
-                <Text style={feels}>Feels like 5</Text>
+                <Feather
+                    name={weatherType[weatherCondition].icon}
+                    size={100}
+                    color="white"
+                />
+                <Text style={tempStyles}>{temp}</Text>
+                <Text style={feels}>{`Feels like ${feels_like}`}</Text>
                 <RowText
                     textContainer={highLowWrapper}
-                    texts={['High: 8', 'Low: 6']}
+                    texts={[`High ${temp_max}`, `Low ${temp_min}`]}
                     stylesText={[highLow]}
                 />
             </View>
             <RowText
                 textContainer={bodyWrapper}
-                texts={['Its sunny', 'Its perfect T-shirt weather']}
+                texts={[
+                    weather[0].description,
+                    weatherType[weatherCondition].message
+                ]}
                 stylesText={[description, message]}
             />
         </SafeAreaView>
@@ -49,7 +73,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 10
     },
-    temp: {
+    tempStyles: {
         color: 'black',
         fontSize: 48
     },

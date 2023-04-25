@@ -7,10 +7,11 @@ import {
     SafeAreaView,
     StatusBar
 } from 'react-native'
+import moment from 'moment'
 // components
 import IconText from '../components/IconText'
 
-const City = () => {
+const City = ({ weatherData }) => {
     const {
         container,
         image,
@@ -23,21 +24,24 @@ const City = () => {
         riseSetText,
         iconContainer
     } = styles
+
+    const { name, country, population, sunrise, sunset } = weatherData
+
     return (
         <SafeAreaView style={container}>
             <ImageBackground
                 source={require('../../assets/city-background.jpg')}
                 style={image}
             >
-                <Text style={[cityName, cityText]}>Tokyo</Text>
-                <Text style={[countryName, cityText]}>Japan</Text>
+                <Text style={[cityName, cityText]}>{name}</Text>
+                <Text style={[countryName, cityText]}>{country}</Text>
                 <View style={populationWrapper}>
                     <IconText
                         iconContainer={iconContainer}
                         iconName={'user'}
                         iconSize={50}
                         iconColor={'red'}
-                        text={'8000'}
+                        text={`Population: ${population}`}
                         textStyles={populationText}
                     />
                 </View>
@@ -47,7 +51,7 @@ const City = () => {
                         iconName={'sunrise'}
                         iconSize={50}
                         iconColor={'white'}
-                        text={'10:48:58am'}
+                        text={moment(sunrise).format('h:mm:ss a')}
                         textStyles={riseSetText}
                     />
                     <IconText
@@ -55,7 +59,7 @@ const City = () => {
                         iconName={'sunset'}
                         iconSize={50}
                         iconColor={'white'}
-                        text={'17:28:15pm'}
+                        text={moment(sunset).format('h:mm:ss a')}
                         textStyles={riseSetText}
                     />
                 </View>
