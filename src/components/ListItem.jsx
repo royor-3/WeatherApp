@@ -2,13 +2,14 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import moment from 'moment'
+import 'moment/locale/fr'
+moment.locale('fr')
 // utilities
 import { weatherType } from '../utilities/weatherType'
-
 const ListItem = (props) => {
     const { dt_txt, min, max, condition } = props
 
-    const { item, date, temp, dateTextWrapper } = styles
+    const { item, date, day, temp, dateTextWrapper } = styles
     return (
         <View style={item}>
             <Feather
@@ -17,8 +18,8 @@ const ListItem = (props) => {
                 color={'white'}
             />
             <View style={dateTextWrapper}>
-                <Text style={date}>{moment(dt_txt).format('dddd')}</Text>
-                <Text style={date}>{moment(dt_txt).format('h:mm:ss a')}</Text>
+                <Text style={[date, day]}>{moment(dt_txt).format('dddd')}</Text>
+                <Text style={date}>{moment(dt_txt).format('LTS')}</Text>
             </View>
             <Text style={temp}>{`${Math.round(min)}°/${Math.round(
                 max
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         marginHorizontal: 16,
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         alignItems: 'center',
         borderWidth: 5,
         backgroundColor: 'indianred'
@@ -44,6 +45,9 @@ const styles = StyleSheet.create({
     date: {
         color: 'white',
         fontSize: 15
+    },
+    day: {
+        textTransform: 'capitalize'
     },
     dateTextWrapper: {
         flexDirection: 'column'

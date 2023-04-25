@@ -7,6 +7,8 @@ import {
     SafeAreaView
 } from 'react-native'
 import moment from 'moment'
+import 'moment/locale/fr'
+moment.locale('fr')
 // components
 import IconText from '../components/IconText'
 
@@ -32,14 +34,16 @@ const City = ({ weatherData }) => {
                 source={require('../../assets/city-background.jpg')}
                 style={image}
             >
-                <Text style={[cityName, cityText]}>{name}</Text>
-                <Text style={[countryName, cityText]}>{country}</Text>
+                <View>
+                    <Text style={[cityName, cityText]}>{name}</Text>
+                    <Text style={[countryName, cityText]}>{country}</Text>
+                </View>
                 <View style={populationWrapper}>
                     <IconText
                         iconContainer={iconContainer}
                         iconName={'user'}
                         iconSize={50}
-                        iconColor={'red'}
+                        iconColor={'indianred'}
                         text={`Population: ${population}`}
                         textStyles={populationText}
                     />
@@ -50,7 +54,7 @@ const City = ({ weatherData }) => {
                         iconName={'sunrise'}
                         iconSize={50}
                         iconColor={'white'}
-                        text={moment(sunrise).format('h:mm:ss a')}
+                        text={moment.unix(sunrise).format('LTS')}
                         textStyles={riseSetText}
                     />
                     <IconText
@@ -58,7 +62,7 @@ const City = ({ weatherData }) => {
                         iconName={'sunset'}
                         iconSize={50}
                         iconColor={'white'}
-                        text={moment(sunset).format('h:mm:ss a')}
+                        text={moment.unix(sunset).format('LTS')}
                         textStyles={riseSetText}
                     />
                 </View>
@@ -92,7 +96,7 @@ const styles = StyleSheet.create({
     populationText: {
         fontSize: 25,
         marginLeft: 7.5,
-        color: 'red',
+        color: 'indianred',
         fontWeight: 'bold'
     },
     riseSetWrapper: {

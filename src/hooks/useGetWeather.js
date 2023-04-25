@@ -13,7 +13,7 @@ export const useGetWeather = () => {
     const fetchWeathData = async () => {
         try {
             const response = await fetch(
-                `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
+                `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric&lang=fr`
             )
             const data = await response.json()
             setWeather(data)
